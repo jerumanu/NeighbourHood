@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<title>FLASHCARD.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" class="w3-circle"
+  href="https://cdn.pixabay.com/photo/2016/08/26/15/56/medal-1622523_960_720.png" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif
+  }
+</style>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+
+        {% if  my_profile.profile_photo %}
+        <img src="{{my_profile.profile_photo.url}}" style="width:50%;" class="w3-circle w3-center">
+        {%else%}
+        <img
+          src="https://www.yourfirstpatient.com/assets/default-user-avatar-thumbnail-117c4e02d0bee9a424842ebb2a903cf71468999f79ce30bad99c07f100764064.png" 
+          style="width:45%;" class="w3-circle w3-center">
+        {% endif %}
+      </div>
+
+      <p class="w3-text-grey w3-center"> Logged in as <a id='zae' style='font-size: 18px;'
+          href="{%url 'profile'%}"><span id='spaner'>{{user.username}}</span></a></p>
+      {% if my_profile.bio %}
+      <p>{{ my_profile.bio }}</p>
+      {%else%}
+      <P>No user bio for {{user.username}}</P>
+      {% endif %}
+      <hr>
+
+    </div>
+    <div class="w3-bar-block">
+      <a href="{%url 'home'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-green"><i
+          class="fa fa-home fa-fw w3-margin-right"></i>Home</a>
+      <a href="{%url 'profile'%}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-user fa-fw w3-margin-right"></i>Profile</a>
+      <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i
+          class="fa fa-sign-out fa-fw w3-margin-right"></i>Logout</a>
+    </div>
+
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:250px;">
+
+    <header id="portfolio">
+      <a href="#"><img
+          src="https://file.forms.app/formfile/5fad91eb3b0e8836c37fc23b/291ab71e-2521-11eb-b6de-4201c0a80002"
+          style="width:65px;height:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i
+          class="fa fa-bars"></i></span>
+
+    </header>
+
+
+    <div class="w3-row-padding">
+      <h5 class="w3-center">My Projects</h5>
+      <div class="w3-center">
+        <a class="w3-button w3-round w3-green" href="{%url 'post'%}" style="margin-right: 12px;"><b>+ </b>Add a Project</a>
+        <a class="w3-button w3-round w3-green" href="{%url 'edit'%}"><b>- </b>Edit Profile <b> -</b></a>
+      </div><br>
+      {%for project in my_projects%}
+      <div class="w3-third w3-container w3-margin-bottom ">
+        <img src="{{project.project_photo.url}}" alt="project_photo" style="width:100%" class="w3-hover-opacity">
+        <div class="w3-container w3-white w3-card">
+          <p><b>{{project.project_name}}</b></p>
+          <p>{{project.description}}</p>
+          <div class="w3-center "></div>
+
+        </div>
+      </div>
+      {%endfor%}
+
+    </div>
+
+
+    <!-- End page content -->
+  </div>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+  </script>
+
+  <style>
+    #zae {
+      text-decoration: none !important;
+      color: #4CAF50 !important;
+    }
+  </style>
+
+</body>
+
+</html>

@@ -23,5 +23,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^', include('hood.urls')),
-    url('accounts/', auth_views.LogoutView, {'next_page': '/'}, name='logout'),
+    url(r'^accounts/logout/', auth_views.LogoutView, {'next_page': '/'}, name='logout'),
 ]
+

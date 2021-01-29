@@ -11,11 +11,18 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+cloudinary.config( 
+  cloud_name = "duwcyaitg", 
+  api_key = "845663342138117", 
+  api_secret = "BPb5u0vZfuqvk0ZKWSJgTlLDhPg" 
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -41,13 +48,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'bootstrap3',
     'crispy_forms',
+    'cloudinary',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,5 +132,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'home'
+
+STATIC_URL = '/static/'
+
+
+# Extra places for collectstatic to find static files.
+
+#configuring the location for media
+MEDIA_URL = '/media/'
+
 
 
